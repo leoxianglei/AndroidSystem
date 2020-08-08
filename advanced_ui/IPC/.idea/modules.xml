@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/IPC.iml" filepath="$PROJECT_DIR$/IPC.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app2/app2.iml" filepath="$PROJECT_DIR$/app2/app2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ipc/ipc.iml" filepath="$PROJECT_DIR$/ipc/ipc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ipc2/ipc2.iml" filepath="$PROJECT_DIR$/ipc2/ipc2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IPC.iml" filepath="$PROJECT_DIR$/IPC.iml" group="IPC" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="IPC/app" />
+      <module fileurl="file://$PROJECT_DIR$/app2/app2.iml" filepath="$PROJECT_DIR$/app2/app2.iml" group="IPC/app2" />
+      <module fileurl="file://$PROJECT_DIR$/ipc/ipc.iml" filepath="$PROJECT_DIR$/ipc/ipc.iml" group="IPC/ipc" />
+      <module fileurl="file://$PROJECT_DIR$/ipc2/ipc2.iml" filepath="$PROJECT_DIR$/ipc2/ipc2.iml" group="IPC/ipc2" />
     </modules>
   </component>
 </project>
