@@ -1,11 +1,11 @@
 package com.zero.rxjava2;
 
 import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.functions.Consumer;
 import io.reactivex.observables.ConnectableObservable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -25,6 +25,7 @@ public class ColdObservableDemo {
     public static void main(String ... args){
             //TODO:
 
+
         //创建一个"冷"的被观察者
         Observable<Long> observable = Observable.create(new ObservableOnSubscribe<Long>() {
             @Override
@@ -32,37 +33,47 @@ public class ColdObservableDemo {
                 Observable.interval(10, TimeUnit.MILLISECONDS,
                         Schedulers.computation())
                         .take(Integer.MAX_VALUE)
-                        .subscribe(emitter::onNext);
+                        .subscribe(new Consumer<Long>() {
+                            @Override
+                            public void accept(Long aLong) throws Exception {
+                                emitter.onNext(aLong);
+                            }
+                        });
             }
-        }).observeOn(Schedulers.newThread());
+        }).observeOn(Schedulers.newThread()).publish();
 
-//        ((ConnectableObservable<Long>) observable).connect();
+        ((ConnectableObservable<Long>) observable).connect();
 
-        observable.subscribe(new io.reactivex.functions.Consumer<Long>() {
+        Consumer<Long> consumer1 = new Consumer<Long>() {
             @Override
-            public void accept(Long aLong) throws Exception {
-                System.out.println("consumer1: " + aLong);
+            public void accept(Long o) throws Exception {
+                System.out.println("consumer1: " + o);
             }
-        });
+        };
 
-        observable.subscribe(new io.reactivex.functions.Consumer<Long>() {
+        Consumer<Long> consumer2 = new Consumer<Long>() {
             @Override
-            public void accept(Long aLong) throws Exception {
-                System.out.println("    consumer2: " + aLong);
+            public void accept(Long o) throws Exception {
+                System.out.println("    consumer2: " + o);
             }
-        });
+        };
+
+        Consumer<Long> consumer3 = new Consumer<Long>() {
+            @Override
+            public void accept(Long o) throws Exception {
+                System.out.println("        consumer3: " + o);
+            }
+        };
+
+        observable.subscribe(consumer1);
+        observable.subscribe(consumer2);
 
         try {
             Thread.sleep(30);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        observable.subscribe(new io.reactivex.functions.Consumer<Long>() {
-            @Override
-            public void accept(Long aLong) throws Exception {
-                System.out.println("            consumer3: " + aLong);
-            }
-        });
+        observable.subscribe(consumer3);
 
         try {
             Thread.sleep(100);
