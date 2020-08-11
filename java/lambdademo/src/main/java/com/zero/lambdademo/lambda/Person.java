@@ -66,7 +66,7 @@ public class Person {
 
         // ::  方法引用
         Consumer<String> c =  new Consumer<String>() {
-            @Override
+            @Override           
             public void accept(String s) {
                 System.out.println(s);
             }
