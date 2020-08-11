@@ -34,7 +34,7 @@ public class ViewClickObservable extends Observable<Object> {
         private final View view;
         private final Observer<Object> observer;
 
-        private final AtomicBoolean isDisposable = new AtomicBoolean();
+        private final AtomicBoolean     isDisposable = new AtomicBoolean();
 
         MyListener(View view, Observer<? super Object> observer) {
             this.view = view;

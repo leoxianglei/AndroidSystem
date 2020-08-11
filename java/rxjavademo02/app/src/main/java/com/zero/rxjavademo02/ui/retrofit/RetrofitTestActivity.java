@@ -77,7 +77,7 @@ public class RetrofitTestActivity extends RxAppCompatActivity {
 //        RxView.clicks(btn3)
 //                .throttleFirst(1000, TimeUnit.MILLISECONDS)
 //                .subscribe(
-//                        v -> wanAndroidApi.getProject()
+//                        v -> wanAndr  oidApi.getProject()
 //                        .compose(RxUtils.io_main())
 //                        .subscribe(projectBean -> {
 //                            for(ProjectBean.DataBean dataBean :projectBean.getData()){
